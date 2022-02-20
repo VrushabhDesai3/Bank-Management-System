@@ -1,0 +1,22 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>Customer Account Executive</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <br><br>
+    <div class="jumbotron alert alert-warning">
+      <div class="col-sm-8 mx-auto">
+        <h1>Welcome Customer Account Executive</h1>
+        <p style="whith-space:pre-wrap">    You can create new customers, search them by unique Customer ID of AADHAR Number. Customer status can be checked. You can even update and delete customers.</p>
+        <p style="whith-space:pre-wrap">    You can create new accounts for existing customers. Account can be Current or Savings. Accounts can be searched by Account ID or Customer ID. Account status can be checked. You can even update and delete accounts.</p>
+      </div>
+      <hr><br>
+      <h4>{{message}}</h4>
+    </div>
+
+{% endblock %}

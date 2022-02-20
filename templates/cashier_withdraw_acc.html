@@ -1,0 +1,25 @@
+{% extends "base3.html" %}
+
+
+{% block head %}
+    <title>Withdraw Money</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Withdraw Amount</h4> <hr><br>
+    <form action="/cashier/withdraw/{{temp.aid}}" method="post">
+        <p>Customer ID: {{temp.ahol}}</p>
+        <p>Account ID: {{temp.aid}}</p>
+        <p>Account Type: {{temp.atyp}}</p>
+        <p>Balance: {{temp.amt}}</p>
+        <label for="01">Withdraw Amount:</label>
+        <input class="form-control mr-sm-2 col-md-3" type="number" id="01" name="withdrawAmt" required> <br>
+        <button class="btn btn-warning" type="reset">Reset</button>
+        <button class="btn btn-success" type="submit">Confirm Withdraw</button>
+    </form>
+    </div>
+
+{% endblock %}

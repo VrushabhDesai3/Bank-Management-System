@@ -1,0 +1,31 @@
+{% extends "base2.html" %}
+
+{% block head %}
+    <title>Create New Account</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+        <h4>Creating Account...</h4> <hr><br>
+        <form action="/c_account" method="post">
+            <label for="01">Customer ID:</label>
+            <input class="form-control mr-sm-2 col-md-4" type="text" id="01" name="ahol"> <br>
+            <label for="02">Account Type:</label>
+            <select class="form-control col-md-4" id="02" name="atyp">
+                <option>Savings</option>
+                <option>Current</option>
+            </select> <br>
+            <label for="03">Deposit Amount:</label>
+            <input class="form-control mr-sm-2 col-md-4" type="text" id="03" name="amt"> <br>
+            <button class="btn btn-warning" type="reset">Reset</button>
+            <button class="btn btn-success" type="submit">Create Account</button>
+        </form>
+        <br>
+        <div style="color: red">
+            <p>{{message}}</p>
+        </div>
+    </div>
+
+{% endblock %}

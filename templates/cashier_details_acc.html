@@ -1,0 +1,35 @@
+{% extends "base3.html" %}
+
+
+{% block head %}
+    <title>{{temp.aid}} Account Details</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Account Details: {{temp.aid}}</h4> <hr><br>
+        <p>Customer ID: {{temp.ahol}}</p>
+        <p>Account ID: {{temp.aid}}</p>
+        <p>Account Type: {{temp.atyp}}</p>
+        <p>Balance: {{temp.amt}}</p>
+        <p>On: {{temp.adate}}</p>
+        {% if temp %}
+        <a class="btn btn-success" href="/cashier/deposit/account/{{temp.aid}}">Deposit</a>
+        <a class="btn btn-warning" href="/cashier/withdraw/account/{{temp.aid}}">Withdraw</a>
+        <a class="btn btn-info" href="/cashier/transfer/account/{{temp.aid}}">Transfer</a>
+        {% endif %}
+        <br><br>
+        {% if error %}
+        <div style="color: red">
+        {{message}}
+        </div>
+        {% else %}
+        <div style="color: green">
+        {{message}}
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

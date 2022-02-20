@@ -1,0 +1,86 @@
+{% extends "base3.html" %}
+
+
+{% block head %}
+
+    <title>Mini Statement</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="jumbotron">
+
+    <br>
+    <form action="/cashier/statement" method="post">
+        <label for="01">Account ID:</label>
+        <input class="form-control mr-sm-2 col-md-3" type="text" id="01" name="tacc" required> <br>
+        <input class="" type="radio" id="02" name="selection" required checked onclick="myfunc2()" value="Number">
+        <label>Last Number of Transcations</label><br>
+        <input class="" type="radio" id="03" name="selection" onclick="myfunc()" value="Date"> <label>Start-End Dates </label><br>
+        <div id="trans">
+        <label>Number of Transaction : </label><select class="form-control mr-sm-2 col-md-3" name="numTrans" class="" id="04" style="text-align: center">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+        </select><br></div>
+        <div id="dates" style="display: none">
+        <label>From Date: </label><input class="form-control mr-sm-2 col-md-3" type="Date" name="fromDate"><br>
+        <label>To Date: </label><input class="form-control mr-sm-2 col-md-3" type="Date" name="toDate">
+
+        <br></div><br>
+        <button class="btn btn-dark" type="submit">Generate Statement</button>
+    </form>
+    <div class="err" style="color: red;font-size: large">
+    {% if err %}
+    {{msg}}
+    {% endif %}
+        </div>
+    <br><hr>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Account ID</th>
+      <th scope="col">Transaction ID</th>
+      <th scope="col">Transaction</th>
+      <th scope="col">Amount Balance</th>
+      <th scope="col">On</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in temp%}
+    <tr>
+      <td>{{t.tacc}}</td>
+      <th scope="row">{{t.tid}}</th>
+      <td>{{t.tmsg}}</td>
+      <td>{{t.tamt}}</td>
+      <td>{{t.tdate}}</td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+
+    <nav><a class="btn btn-dark" style="color: white" onclick="window.print()">Get as PDF</a></nav>
+    <script>
+        function myfunc() {
+            if(document.getElementById('03').checked) {
+                document.getElementById('trans').style.display='none';
+                document.getElementById('dates').style.display='block';
+            }
+        }
+        function myfunc2() {
+            if(document.getElementById('02').checked) {
+                document.getElementById('trans').style.display='block';
+                document.getElementById('dates').style.display='none';
+            }
+        }
+
+    </script>
+</div>
+
+{% endblock %}

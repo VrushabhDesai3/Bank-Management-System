@@ -1,0 +1,50 @@
+{% extends "base2.html" %}
+
+{% block head %}
+    <title>Search Account</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Search Account...</h4> <hr><br>
+    <form action="/r_account" method="post">
+        <label for="01">Search by Customer ID:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="01" name="by_cid"> <br>
+        <button class="btn btn-primary" type="submit">Search</button> <br> <hr>
+    </form>
+    <form action="/r_account" method="post">
+        <label for="02">Search by Account ID:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="02" name="by_aid"> <br>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    </div>
+
+<div class="jumbotron alert alert-primary">
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Account ID</th>
+      <th scope="col">Account Type</th>
+      <th scope="col">Balance Amount</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in temp%}
+    <tr>
+      <th scope="row">{{t.ahol}}</th>
+      <td>{{t.aid}}</td>
+      <td>{{t.atyp}}</td>
+      <td>{{t.amt}}</td>
+      <td><a class="btn btn-info" href="/details_account/{{t.aid}}">View Details</a></td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

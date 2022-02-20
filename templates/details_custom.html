@@ -1,0 +1,24 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>{{temp.cname}} Customer Details</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Customer Details: {{temp.cid}}</h4> <hr><br>
+        <p>Customer ID: {{temp.cid}}</p>
+        <p>Name: {{temp.cname}}</p>
+        <p>AADHAR: {{temp.cadr}}</p>
+        <p>Age: {{temp.cage}}</p>
+        <p style="white-space:pre-wrap">Address: {{temp.cadd}}</p>
+        <p>Message: {{temp.cmsg}}</p>
+        <p>On: {{temp.cdate}}</p>
+        <a class="btn btn-warning" href="/u_customer/{{temp.cid}}">Update</a>
+        <a class="btn btn-danger" href="/d_customer/{{temp.cid}}">Delete</a>
+    </div>
+
+{% endblock %}

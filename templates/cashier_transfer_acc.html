@@ -1,0 +1,104 @@
+{% extends "base3.html" %}
+
+
+{% block head %}
+    <title>Transfer Money</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Transfer Money</h4> <hr><br>
+    <form action="/cashier/transfer/{{temp.aid}}" method="post">
+        <p><b>Customer ID: {{temp.ahol}}</b></p>
+
+        <label for="01">Source Account:<span class="source" style="color: red" id="balance01">{% for balance in balances %} {% if balance[0]=='Savings' %} {{balance[1]}} {% endif %} {% endfor %}</span></label>
+        <select class="form-control col-md-4" name="sourceAcc" id="01" onchange="func(value,'02')">
+            <option value="Savings">Savings</option>
+            <option value="Current">Current</option>
+        </select><br>
+
+        <label for="02">Target Account: <span class="target" style="color: red" id="balance02">{% for balance in balances %} {% if balance[0]=='Current' %} {{balance[1]}} {% endif %} {% endfor %}</span></label>
+        <select class="form-control col-md-4" name="targetAcc" id="02" onchange="func(value, '01')">
+            <option value="Savings">Savings</option>
+            <option value="Current" selected>Current</option>
+        </select><br>
+
+        <label for="03">Transfer Amount:</label>
+        <input class="form-control mr-sm-2 col-md-6" type="number" id="03" name="transferAmt" required> <br>
+
+        <button class="btn btn-warning" type="reset">Reset</button>
+        <button class="btn btn-success" type="submit">Confirm Transfer</button>
+    </form>
+    </div>
+
+<script>
+    //Custom function that changes a select element's option.
+    function select(selectId, optionValToSelect){
+        //Get the select element by it's unique ID.
+        var selectElement = document.getElementById(selectId);
+        //Get the options.
+        var selectOptions = selectElement.options;
+        //Loop through these options using a for loop.
+        for (var opt, j = 0; opt = selectOptions[j]; j++) {
+            //If the option of value is equal to the option we want to select.
+            if (opt.value == optionValToSelect) {
+                //Select the option and break out of the for loop.
+                selectElement.selectedIndex = j;
+                break;
+            }
+        }
+    }
+    function func(value, num){
+        if(num == '02') {
+            if (value == 'Savings') {
+                document.getElementById("balance01").textContent="{% for balance in balances %} " +
+                    "{% if balance[0]=='Savings' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                document.getElementById("balance02").textContent="{% for balance in balances %} " +
+                    "{% if balance[0]=='Current' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                select(num, 'Current')
+            }
+            if (value == 'Current') {
+                document.getElementById("balance01").textContent="{% for balance in balances %} " +
+                    "{% if balance[0]=='Current' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                document.getElementById("balance02").textContent="{% for balance in balances %} " +
+                    "{% if balance[0]=='Savings' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                select(num, 'Savings')
+            }
+        }else {
+            if (value == 'Savings') {
+                document.getElementById("balance01").textContent = "{% for balance in balances %} " +
+                    "{% if balance[0]=='Current' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                document.getElementById("balance02").textContent = "{% for balance in balances %} " +
+                    "{% if balance[0]=='Savings' %} " +
+                    "{{balance[1]}} " +
+                    "{% endif %} " +
+                    "{% endfor %}";
+                select(num, 'Current')
+            }
+            if (value == 'Current') {
+                document.getElementById("balance01").textContent = '200';
+                document.getElementById("balance02").textContent = '300';
+                select(num, 'Savings')
+            }
+        }
+    }
+</script>
+
+{% endblock %}

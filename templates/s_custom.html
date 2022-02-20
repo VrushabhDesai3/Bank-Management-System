@@ -1,0 +1,41 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+
+<title>Status of Customers</title>
+
+{% endblock %}
+
+
+{% block body %}
+
+<div class="jumbotron">
+<h4>Customer Status...</h4> <hr><br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer AADHAR</th>
+      <th scope="col">Message</th>
+      <th scope="col">On</th>
+      <th scope="col" colspan="2">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in temp%}
+    <tr>
+      <th scope="row">{{t.cid}}</th>
+      <td>{{t.cname}}</td>
+      <td>{{t.cadr}}</td>
+      <td>{{t.cmsg}}</td>
+      <td>{{t.cdate}}</td>
+      <td><a class="btn btn-info" href="/details_customer/{{t.cid}}">View Details</a></td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

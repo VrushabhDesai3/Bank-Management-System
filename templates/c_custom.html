@@ -1,0 +1,27 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>Create New Customer</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Creating Customer...</h4> <hr><br>
+    <form action="/c_customer" method="post">
+        <label for="01">Customer Name:</label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" id="01" name="cname"> <br>
+        <label for="02">Customer AADHAR:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="number" id="02" name="cadr" min="100000000" max="999999999"> <br>
+        <label for="03">Customer Age:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="03" name="cage"> <br>
+        <label for="04">Customer Address:</label>
+        <textarea class="form-control" id="04" name="cadd" rows="5"></textarea> <br>
+        <button class="btn btn-warning" type="reset">Reset</button>
+        <button class="btn btn-success" type="submit">Create Customer</button>
+    </form>
+    </div>
+
+{% endblock %}

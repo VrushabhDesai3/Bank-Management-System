@@ -1,0 +1,30 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>Update Customer</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Updating Customer: {{temp.cname}}</h4> <hr><br>
+    <form action="/u_customer/{{temp.cid}}" method="post">
+        <p>Customer ID: {{temp.cid}}</p>
+        <p>Customer AADHAR: {{temp.cadr}}</p>
+        <p>Existing Name: {{temp.cname}}</p>
+        <p>Existing Age: {{temp.cage}}</p>
+        <p style="white-space:pre-wrap">Existing Address: {{temp.cadd}}</p>
+        <label for="01">New Name:</label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" id="01" name="cname" value="{{temp.cname}}"> <br>
+        <label for="02">New Age:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="02" name="cage" value="{{temp.cage}}"> <br>
+        <label for="03">New Address:</label>
+        <textarea class="form-control" id="03" name="cadd" rows="5"> {{temp.cadd}} </textarea> <br>
+        <button class="btn btn-warning" type="reset">Reset</button>
+        <button class="btn btn-success" type="submit">Save Changes</button>
+    </form>
+    </div>
+
+{% endblock %}

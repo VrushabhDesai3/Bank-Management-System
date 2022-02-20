@@ -1,0 +1,22 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>{{temp.aid}} Account Details</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Account Details: {{temp.aid}}</h4> <hr><br>
+        <p>Customer ID: {{temp.ahol}}</p>
+        <p>Account ID: {{temp.aid}}</p>
+        <p>Account Type: {{temp.atyp}}</p>
+        <p>Balance: {{temp.amt}}</p>
+        <p>Message: {{temp.amsg}}</p>
+        <p>On: {{temp.adate}}</p>
+        <a class="btn btn-danger" href="/d_account/{{temp.aid}}">Delete</a>
+    </div>
+
+{% endblock %}

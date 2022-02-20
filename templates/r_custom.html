@@ -1,0 +1,54 @@
+{% extends "base2.html" %}
+
+
+{% block head %}
+    <title>Search Customer</title>
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="jumbotron">
+    <h4>Search Customer...</h4> <hr><br>
+    <form action="/r_customer" method="post">
+        <label for="01">Search by Customer ID:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="01" name="by_cid"> <br>
+        <button class="btn btn-primary" type="submit">Search</button> <br> <hr>
+    </form>
+    <form action="/r_customer" method="post">
+        <label for="02">Search by AADHAR:</label>
+        <input class="form-control mr-sm-2 col-md-4" type="text" id="02" name="by_cadr"> <br>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    </div>
+
+<div class="jumbotron alert alert-primary">
+<br>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Customer ID</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer AADHAR</th>
+      <th scope="col">Customer Age</th>
+      <th scope="col">Customer Address</th>
+      <th scope="col" colspan="2">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for t in temp%}
+    <tr>
+      <th scope="row">{{t.cid}}</th>
+      <td>{{t.cname}}</td>
+      <td>{{t.cadr}}</td>
+      <td>{{t.cage}}</td>
+      <td>{{t.cadd}}</td>
+      <td><a class="btn btn-info" href="/details_customer/{{t.cid}}">View Details</a></td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock %}
